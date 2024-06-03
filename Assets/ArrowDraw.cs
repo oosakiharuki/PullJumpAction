@@ -12,7 +12,7 @@ public class ArrowDraw : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //arrowImage.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -21,10 +21,10 @@ public class ArrowDraw : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             clickPosition = Input.mousePosition;
-            //arrowImage.gameObject.SetActive(true);
+            arrowImage.gameObject.SetActive(true);
         }
         if (Input.GetMouseButton(0))
-        {
+        {    
             Vector3 dist = clickPosition - Input.mousePosition;
 
             float size = dist.magnitude;
@@ -39,9 +39,9 @@ public class ArrowDraw : MonoBehaviour
 
             
         }
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    arrowImage.gameObject.SetActive(false);
-        //}
+        if (Input.GetMouseButtonUp(0))
+        {
+            arrowImage.gameObject.SetActive(false);
+        }
     }
 }
