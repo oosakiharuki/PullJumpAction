@@ -5,7 +5,46 @@ using UnityEngine;
 public class PullingJump : MonoBehaviour
 {
 
-    private Rigidbody rb;
+    private Rigidbody rb;   
+    private Vector3 clickPosition;
+    [SerializeField]
+    private float jumpPower = 10;
+    private bool isCanJump;
+
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("âüÇµÇΩèuä‘");
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        //Debug.Log("êGÇ¡ÇƒÇ¢ÇÈ");
+
+        ContactPoint[] contacts = collision.contacts;
+
+        Vector3 otherNomal = contacts[0].normal;
+
+        Vector3 upVector = new Vector3(0, 1, 0);
+
+        float dotUN = Vector3.Dot(upVector, otherNomal);
+
+        float dotDec = Mathf.Acos(dotUN) * Mathf.Rad2Deg;
+
+        if (dotDec <= 45)
+        {
+            isCanJump = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        //Debug.Log("ãÛíÜÇ…Ç¢ÇÈ");
+        isCanJump = false;
+    }
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +54,7 @@ public class PullingJump : MonoBehaviour
     }
    
     
-    private Vector3 clickPosition;
-    [SerializeField]
-    private float jumpPower = 10;
+
 
     // Update is called once per frame
     void Update()
@@ -26,15 +63,18 @@ public class PullingJump : MonoBehaviour
         {
             clickPosition = Input.mousePosition;
         }
-        if (Input.GetMouseButtonUp(0))
+        if (isCanJump)
         {
-            Vector3 dist = clickPosition - Input.mousePosition;
-
-            if(dist.sqrMagnitude == 0)
+            if (Input.GetMouseButtonUp(0))
             {
-                return;
+                Vector3 dist = clickPosition - Input.mousePosition;
+
+                if (dist.sqrMagnitude == 0)
+                {
+                    return;
+                }
+                rb.velocity = dist.normalized * jumpPower;
             }
-            rb.velocity = dist.normalized * jumpPower;
         }
     }
 }
