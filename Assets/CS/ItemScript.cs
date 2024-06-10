@@ -7,6 +7,8 @@ public class NewBehaviourScript : MonoBehaviour
 {
     GameObject ItemPrefub;
 
+    private Animator aimator;
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
@@ -15,7 +17,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        DestroySelf();
+        //DestroySelf();
+        aimator.SetTrigger("Get");
     }
     private void DestroySelf()
     {
@@ -32,7 +35,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        aimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
