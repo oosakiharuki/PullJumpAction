@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class IremScript : MonoBehaviour
 {
     GameObject ItemPrefub;
 
     private Animator aimator;
 
+    private AudioSource audioSource;
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
+        audioSource.Play();
     }
 
 
@@ -19,10 +22,11 @@ public class NewBehaviourScript : MonoBehaviour
     {
         //DestroySelf();
         aimator.SetTrigger("Get");
+        
     }
     private void DestroySelf()
     {
-        Destroy(gameObject);
+        Destroy(gameObject);       
     }
 
 
@@ -36,6 +40,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         aimator = GetComponent<Animator>();
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
