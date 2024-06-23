@@ -15,13 +15,18 @@ public class GameManagerStrict : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && nextSceneName == "SampleScene")
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene(nextSceneName);
         }
-        else if (Input.GetKeyDown(KeyCode.N))
+
+
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(nextSceneName);
+            SceneManager.LoadScene(0);
         }
+
+
     }
 }
