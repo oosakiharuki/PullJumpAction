@@ -19,5 +19,9 @@ public class GameManagerStrict : MonoBehaviour
         {
             SceneManager.LoadScene(nextSceneName);
         }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 }
