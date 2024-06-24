@@ -11,10 +11,29 @@ public class IremScript : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private bool Claer;
+
+    public GameObject clearText;
+    public GameObject clearText2;
+
+    public GameObject NectStage;
+
+    public bool IsCleard()
+    {
+        if (Claer == true)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Enter");
         audioSource.Play();
+        Claer = true;
     }
 
 
@@ -22,11 +41,12 @@ public class IremScript : MonoBehaviour
     {
         //DestroySelf();
         aimator.SetTrigger("Get");
-        
+
     }
     private void DestroySelf()
     {
-        Destroy(gameObject);       
+        NectStage.GetComponent<GameManagerStrict>().v = true;
+        Destroy(gameObject);        
     }
 
 
@@ -41,11 +61,16 @@ public class IremScript : MonoBehaviour
     {
         aimator = GetComponent<Animator>();
         audioSource = gameObject.GetComponent<AudioSource>();
+        Claer = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (IsCleard())
+        {
+            clearText.SetActive(true);
+            clearText2.SetActive(true);
+        }
     }
 }

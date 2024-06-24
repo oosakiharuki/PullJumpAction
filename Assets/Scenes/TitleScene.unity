@@ -286,7 +286,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97369e0afeb2b2746832abf42e14cc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nowSceneName: TitleScene
   nextSceneName: SampleScene
+  TitleReturn: TitleScene
 --- !u!4 &737517039
 Transform:
   m_ObjectHideFlags: 0
